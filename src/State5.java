@@ -55,6 +55,7 @@ public class State5 {
         for (int i = 0; i < game.players.size(); i++) {
             KeyboardRow keyboardRow = new KeyboardRow();
             keyboardRow.add(new KeyboardButton(game.players.get(i).name));
+            keyboardRow.add(new KeyboardButton("Approve"));
             keyboard.add(keyboardRow);
         }
         replyKeyboardMarkup.setKeyboard(keyboard);
