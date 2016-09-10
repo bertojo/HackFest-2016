@@ -19,12 +19,12 @@ public class State1 {
 				bot.sendMessage(quitter.name + " has left the game", message.getChatId());
 			}
 		} else if (message.getText().equals("/startgame")) {
-			if (game.players.size() < 1) {
+			if (game.players.size() < 5) {
 				bot.sendMessage("Too little players! Please wait for more players to join! " + game.players.toString(), message.getChatId());
 			} else if (game.players.size() > 11) {
 				bot.sendMessage("Too many players! Please get some players to quit the game " + game.players.toString(), message.getChatId());
 			} else {
-				bot.sendMessage("Game is starting, please PM me the gameId for your role and allies (Game id : " + game.gameId + " )", message.getChatId());
+				bot.sendMessage("Game is starting, please PM me the gameId for your role and allies", message.getChatId());
 				game.state++;
 			}
 		}
