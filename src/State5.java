@@ -1,11 +1,9 @@
-import java.awt.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
-import org.telegram.telegrambots.api.objects.replykeyboard.ForceReplyKeyboard;
-import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardHide;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButton;
@@ -59,8 +57,14 @@ public class State5 {
         if (numChosen == numOfQuesters) {
             bot.sendMessage("Players chosen are the following: ", game.gameId);
             printList(bot, game);
-            bot.sendMessage("I will now call state 6.", game.gameId);
             numChosen = 0;
+            
+            game.state++;
+            game.approveRejectMap = new HashMap<Player, Integer>();
+            for (Player player : game.players) {
+            	game.approveRejectMap.put(player, -1);
+            }
+            State6.init(bot, game);
         } else if (msg.getFrom().getFirstName().equals(king.name)) {
             
             String msgUpdate = msg.getText();

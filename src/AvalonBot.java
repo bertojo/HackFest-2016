@@ -52,6 +52,8 @@ public class AvalonBot extends TelegramLongPollingBot {
             			State1.run(this, game, message);
             		} else if (game.state == 5) {
             		    State5.receiveUpdate(this, game, message);
+            		} else if (game.state == 6) {
+            			State6.receiveUpdate(this, game, message);
             		}
             	}
             }
