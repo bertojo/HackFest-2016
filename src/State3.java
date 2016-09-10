@@ -32,6 +32,8 @@ public class State3 {
             bot.sendMessage(sb.toString(), player.id);
         }
         
+        //Create the map
+        game.map = new Map(players.size());
         State4.updateKing(bot, game);
     }
 

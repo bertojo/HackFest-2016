@@ -19,7 +19,7 @@ public class Map {
 	private int[] tenP = { 3, 4, 4, 5, 5 };
 	private int[] tenF = { 1, 1, 1, 2, 1 };
 
-	public Map(int total, int[] mission, int[] fail) {
+	public Map(int total) {
 		switch (total) {
 		case 5:
 			totalNumberOfPlayers = 5;
