@@ -23,5 +23,7 @@ public class Game {
 	public Game(long id) {
 		gameId = id;
 		state = 1;
+		players = new LinkedList<Player>();
+		pendingMissionPlayers = new LinkedList<Player>();
 	}
 }

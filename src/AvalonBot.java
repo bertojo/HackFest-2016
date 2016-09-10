@@ -8,8 +8,8 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 public class AvalonBot extends TelegramLongPollingBot {
 
-    public String token = "279859460:AAFz45DZ5g4eU42O5A0apYb2tHkCb9Uc-HU";
-    public String botName = "BoardBoardBot";
+    public String token = "209510292:AAGF3xpH2h5z7FmXJO1OdsFv_QjL-sx6ITA";
+    public String botName = "AvalonBot";
     public TreeMap<Long, Game> games = new TreeMap<Long, Game>();
 
     @Override
@@ -29,10 +29,14 @@ public class AvalonBot extends TelegramLongPollingBot {
             		//Create a new game
             		Game game = new Game(chatId);
             		games.put(chatId, game);
+            		System.out.println("Game Created, waiting for players");
             	} else {
             		//Handle the game based on its state
             		Game game = games.get(chatId);
             		//Do if else statements to handle the state here which are waiting for input
+            		if (game.state == 1) { //Handle player joining games
+            			State1.run(game, message);
+            		}
             	}
             	
             }

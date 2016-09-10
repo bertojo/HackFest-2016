@@ -1,6 +1,5 @@
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.TelegramBotsApi;
-import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 
 public class Main {
         public static void main(String[] args) {
