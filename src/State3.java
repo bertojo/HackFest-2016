@@ -12,22 +12,28 @@ public class State3 {
         int i = 0;
         for(Player player : players){
             player.role = roles[i];
+            i++;
+        }
+        for(Player player : players){
+            StringBuilder sb = new StringBuilder();
             String[] allies = new String[4];
             allies = Roles.getAlly(player.role, players.size());
-            StringBuilder sb = new StringBuilder();
             sb.append(Roles.roleDescription(player.role));
             if(!player.role.equals(Roles.goodling)){
                 for (String ally : allies) {
                     for(Player person : players){
+                    	System.out.println(person.name);
                         if(person.role.equals(ally)){
                             sb.append(person.name + " ");
                         }
                     }
                 }
             }
-            i++;
             bot.sendMessage(sb.toString(), player.id);
         }
+        
+        //Create the map
+        game.map = new Map(players.size());
         State4.updateKing(bot, game);
     }
 

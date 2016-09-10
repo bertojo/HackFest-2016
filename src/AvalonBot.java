@@ -21,6 +21,7 @@ public class AvalonBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         // check if the update has a message
         if (update.hasMessage()) {
+        	System.out.println(update.getMessage());
             Message message = update.getMessage();
             if (message.hasText()) {
             	//Check if game has been create
@@ -51,7 +52,6 @@ public class AvalonBot extends TelegramLongPollingBot {
             			State1.run(this, game, message);
             		}
             	}
-            	
             }
         }
     }
