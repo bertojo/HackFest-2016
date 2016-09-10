@@ -10,7 +10,7 @@ public class State1 {
 				bot.sendMessage(adminMsg, message.getChatId());
 			} else {
 				game.players.add(newPlayer);
-				String adminMsg = "Added " + newPlayer.name + "!";
+				String adminMsg = "Added " + newPlayer.name + "! (" + game.players.size() + " players)";
 				bot.sendMessage(adminMsg, message.getChatId());
 			}
 		} else if (message.getText().equals("/quit")) {
