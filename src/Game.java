@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Game {
 	public long gameId;
@@ -10,6 +11,7 @@ public class Game {
 	public int pmChannelCount;
 	public int currentQuestNumber;
 	public int totalMissionSuccessCount;
+	public HashMap<Player, Integer> approveRejectMap;
 	
 	//King stuff
 	public Player king;

@@ -8,7 +8,7 @@ public class State2 {
 		//Tell users their role if they pm the bot the gameid for their role
 		Game game = games.get(Long.parseLong(message.getText().replace("/", "")));
 		if (game.state == 2) {
-			bot.sendMessage("Connection Establish! Please wait for the other players to establish the connection", message.getChatId());
+			bot.sendMessage("Connection Established! Please wait for the other players to establish the connection", message.getChatId());
 			for (Player player : game.players) {
 				if (player.name.equals(message.getFrom().getFirstName())) {
 					if (player.id == 0) {

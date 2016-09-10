@@ -1,11 +1,9 @@
-import java.awt.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.telegram.telegrambots.TelegramApiException;
 import org.telegram.telegrambots.api.methods.send.SendMessage;
 import org.telegram.telegrambots.api.objects.Message;
-import org.telegram.telegrambots.api.objects.replykeyboard.ForceReplyKeyboard;
-import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboard;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardHide;
 import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButton;
@@ -56,19 +54,14 @@ public class State5 {
         int numOfQuesters = game.map.missionPlayerCount[game.currentQuestNumber];
         int remainder = numOfQuesters - numChosen;
 
-        if (numChosen == numOfQuesters) {
-            bot.sendMessage("Players chosen are the following: ", game.gameId);
-            printList(bot, game);
-            bot.sendMessage("I will now call state 6.", game.gameId);
-            numChosen = 0;
-        } else if (msg.getFrom().getFirstName().equals(king.name)) {
+        if (msg.getFrom().getFirstName().equals(king.name)) {
             
             String msgUpdate = msg.getText();
             String prefix = msgUpdate.trim().substring(0, 7);
             if (prefix.equals("/choose")) {
                 String chooseWho = msgUpdate.trim().substring(8, msgUpdate.length()).trim();
                 Player playerChosen = findPlayer (game, chooseWho);
-                bot.sendMessage("The king shall now choose " + remainder + " more players for the quest.", game.gameId);
+                bot.sendMessage("The king shall now choose " + (remainder-1) + " more players for the quest.", game.gameId);
                 bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
                 
                 if (game.pendingMissionPlayers.contains(playerChosen)) {
@@ -77,6 +70,20 @@ public class State5 {
                     game.pendingMissionPlayers.add(playerChosen);
                     bot.sendMessage(chooseWho + " has been added.", game.gameId);
                     numChosen++;
+                }
+                
+                //next state if fixed
+                if (numChosen == numOfQuesters) {
+                    bot.sendMessage("Players chosen are the following: ", game.gameId);
+                    printList(bot, game);
+                    numChosen = 0;
+                    
+                    game.state++;
+                    game.approveRejectMap = new HashMap<Player, Integer>();
+                    for (Player player : game.players) {
+                    	game.approveRejectMap.put(player, -1);
+                    }
+                    State6.init(bot, game);
                 }
             }
         } // else ignore
