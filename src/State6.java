@@ -49,7 +49,8 @@ public class State6 {
 					list.append(entry.getKey().name + " : " + (entry.getValue()==1? "Approved" : entry.getValue()==0? "Rejected" : "Not Voted") + "\n");
 					
 					if (numberOfVoters >= game.players.size()) {
-						bot.sendMessage("I will now call state 7", game.gameId);
+						//bot.sendMessage("I will now call state 7", game.gameId);
+						State7.run(game.approveRejectMap, bot, game, game.pendingMissionPlayers);
 					}
 				}
 				
