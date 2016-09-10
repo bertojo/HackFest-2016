@@ -53,6 +53,7 @@ public class State6 {
 				bot.sendMessage(list.toString(), game.gameId);
 				if (numberOfVoters >= game.players.size()) {
 					//bot.sendMessage("I will now call state 7", game.gameId);
+					game.state++;
 					State7.run(game.approveRejectMap, bot, game, game.pendingMissionPlayers);
 				}
 			}

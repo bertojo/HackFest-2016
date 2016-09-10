@@ -6,6 +6,8 @@ public class State10 {
             bot.sendMessage("The loyal servants of Arthur has succeeded in 3 quests!", game.gameId);
             bot.sendMessage("The assasin will now be revealed.", game.gameId);
             bot.sendMessage("I will now call state 11.", game.gameId);
+            game.state++;
+            State11.run(bot, game);
 
         } else if (game.failureCount == 3) {
             bot.sendMessage("The minions of Modred has failed 3 quests!", game.gameId);
@@ -18,6 +20,8 @@ public class State10 {
             bot.sendMessage("The next quest will begin shortly..", game.gameId);
             
             game.state = 4;
+            game.pendingMissionPlayers.clear();
+            game.currentQuestNumber++;
             State4.updateKing(bot, game);
         }
     }

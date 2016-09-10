@@ -1,20 +1,11 @@
-import java.util.ArrayList;
-import java.util.List;
-
-import org.telegram.telegrambots.api.objects.Message;
-import org.telegram.telegrambots.TelegramApiException;
-import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.objects.replykeyboard.ReplyKeyboardMarkup;
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
-import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButton;
-
 public class State8 {
     
     public static void run(Game game, AvalonBot bot) {         
         for (int i = 0; i < game.pendingMissionPlayers.size(); i++) {
-            bot.sendMessage("Type /success or /failure", game.pendingMissionPlayers.get(i).id);
+            bot.sendMessage("Type /"+game.gameId+" success or /"+game.gameId+" fail", game.pendingMissionPlayers.get(i).id);
         }
         game.state++;
+        game.pmMissionCount = 0;
     }
         
 //        List<KeyboardRow> keyboard = new ArrayList<>();

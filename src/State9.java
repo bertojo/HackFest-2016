@@ -4,7 +4,7 @@ import org.telegram.telegrambots.api.objects.Message;
 public class State9 {
 	public static boolean checkPlayer(ArrayList<Player> list, Long id) {
 		for (Player player : list) {
-			if (player.id == id) {
+			if (player.playerId == id) {
 				return true;
 			}
 		}
@@ -12,9 +12,7 @@ public class State9 {
 	}
 
 	public static void run(Message message, AvalonBot bot, Game game, Map map) {
-		
-		game.pmMissionCount = 0;
-		
+		System.out.println(message.getText());
 		int threshold = map.failureCount[map.currentQuestNumber];
         int count = 0;
 		// Count the number of fail in the team
@@ -35,9 +33,13 @@ public class State9 {
         	// If number of fails is more than or equal to the threshold, mission has failed!
     		if (count < threshold) {
     			bot.sendMessage("Mission SUCCESS!", game.gameId);
+    			game.successCount++;
     		} else {
     			bot.sendMessage("Mission FAIL!", game.gameId);
+    			game.failureCount++;
     		}
+    		game.state++;
+    		State10.checkGameStatus(bot, game);
         }
     }
 }
