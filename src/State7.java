@@ -35,8 +35,10 @@ public class State7 {
             	game.map.currentQuestNumber++;
             	game.voteTrack = 0;
             	bot.sendMessage("Evil wins since everyone rejected 5 times GG", game.gameId);
+            	game.state = 12;
             	State12.endGame(game, bot);
             } else {
+            	game.state = 4;
             	State4.updateKing(bot, game);
             }
             
