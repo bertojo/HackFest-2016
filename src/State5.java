@@ -12,6 +12,10 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardButto
 import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 public class State5 {
+    
+    public static int numChosen = 0;
+
+    
     public static void kingChoosePlayers(AvalonBot bot, Game game) {
         Player king = game.king;
         int numOfQuesters = game.map.missionPlayerCount[game.currentQuestNumber];
@@ -43,6 +47,56 @@ public class State5 {
         } else {
             
         }
+    }
+    
+    
+    
+    public static void receiveUpdate (AvalonBot bot, Game game, Message msg) {
+        Player king = game.king;
+        int numOfQuesters = game.map.missionPlayerCount[game.currentQuestNumber];
+        int remainder = numOfQuesters - numChosen;
+        
+        if (numChosen == numOfQuesters) {
+            bot.sendMessage("Players chosen are the following: ", game.gameId);
+            printList(bot, game);
+            bot.sendMessage("I will now call state 6.", game.gameId);
+
+        } else if (msg.getChatId() == king.id) {
+            
+            String msgUpdate = msg.getText();
+            String prefix = msgUpdate.trim().substring(0, 8);
+            if (prefix.equals("/choose")) {
+                String chooseWho = msgUpdate.trim().substring(8, msgUpdate.length()).trim();
+                Player playerChosen = findPlayer (game, chooseWho);
+                bot.sendMessage("The king shall now choose " + remainder + " more players for the quest.", game.gameId);
+                bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
+                
+                if (game.pendingMissionPlayers.contains(playerChosen)) {
+                    bot.sendMessage("THIS GUY ALREADY IN THE TEAM LAH.", game.gameId);
+                } else {
+                    game.pendingMissionPlayers.add(playerChosen);
+                    bot.sendMessage(chooseWho + " has been added.", game.gameId);
+                    numChosen++;
+                }
+            }
+        } // else ignore
+    }
+    
+    public static void printList(AvalonBot bot, Game game) {
+        for (int i = 0; i < game.pendingMissionPlayers.size(); i++) {
+            bot.sendMessage(game.pendingMissionPlayers.get(i).name + "\n", game.gameId);
+
+        }
+    }
+    
+    public static Player findPlayer (Game game, String targetName) {
+        Player foundPlayer = null;
+        for (int i = 0; i < game.players.size(); i++) {
+            if (game.players.get(i).name.equals(targetName)) {
+                foundPlayer = game.players.get(i);
+            }
+        }
+        return foundPlayer;
     }
 
     public static ReplyKeyboardMarkup getQuestChoosingKeyboard(AvalonBot bot, Game game) {
