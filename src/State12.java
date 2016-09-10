@@ -9,7 +9,7 @@ public class State12 {
         for(Player player : players){
             sb.append(player.name + ": " + player.role + "\n");
         }
-        sb.append("\n\n Yay! Type /creategame to play again!");
+        sb.append("\n\nYay! Type /creategame to play again!");
         
         bot.games.remove(game.gameId);
         bot.sendMessage(sb.toString(), game.gameId);
