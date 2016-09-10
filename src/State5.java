@@ -61,15 +61,19 @@ public class State5 {
             if (prefix.equals("/choose")) {
                 String chooseWho = msgUpdate.trim().substring(8, msgUpdate.length()).trim();
                 Player playerChosen = findPlayer (game, chooseWho);
-                bot.sendMessage("The king shall now choose " + (remainder-1) + " more players for the quest.", game.gameId);
-                bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
+                if(!playerChosen.equals(null)){
+                    bot.sendMessage("The king shall now choose " + (remainder-1) + " more players for the quest.", game.gameId);
+                    bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
                 
-                if (game.pendingMissionPlayers.contains(playerChosen)) {
-                    bot.sendMessage("THIS GUY ALREADY IN THE TEAM LAH.", game.gameId);
+                    if (game.pendingMissionPlayers.contains(playerChosen)) {
+                        bot.sendMessage("THIS GUY ALREADY IN THE TEAM LAH.", game.gameId);
+                    } else {
+                        game.pendingMissionPlayers.add(playerChosen);
+                        bot.sendMessage(chooseWho + " has been added.", game.gameId);
+                        numChosen++;
+                    }
                 } else {
-                    game.pendingMissionPlayers.add(playerChosen);
-                    bot.sendMessage(chooseWho + " has been added.", game.gameId);
-                    numChosen++;
+                    bot.sendMessage("Player not found", game.gameId);
                 }
                 
                 //next state if fixed
