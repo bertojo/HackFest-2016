@@ -4,7 +4,7 @@ import java.util.HashMap;
 public class Game {
 	public long gameId;
 	public ArrayList<Player> players;
-	public static int voteTrack = 0;
+	public int voteTrack = 0;
 	public int state;
 	public ArrayList<Player> pendingMissionPlayers;
 	public Map map;

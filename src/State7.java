@@ -1,42 +1,45 @@
 import java.util.List;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
+import java.util.HashMap;
 
 // Approve/Reject states
 public class State7 {
-    public static void run(String[] message, String[] users, AvalonBot bot, Game game, List<Player> pendingMission) {
-        ArrayList<Integer> approve = new ArrayList<Integer>(), reject = new ArrayList<Integer>();
-        for (int i = 0; i < message.length; i++) {
-            if (message[i].equals("Approve")) {
-                approve.add(i);
+    public static void run(HashMap<Player, Integer> usersVote, AvalonBot bot, Game game, List<Player> pendingMission) {
+        ArrayList<String> approve = new ArrayList<String>(), reject = new ArrayList<String>();
+        for (int i = 0; i < game.players.size(); i++) {
+            if (usersVote.get(game.players.get(i).toString()) == 0) {
+                reject.add(game.players.get(i).toString());
+            } else if (usersVote.get(game.players.get(i).toString()) == 1) {
+                approve.add(game.players.get(i).toString());
             } else {
-                reject.add(i);
+                System.out.println("Vote == -1. Fix this error!");
             }
         }
         StringBuilder sb = new StringBuilder();
-        sb.append("Approve:\n");
+        sb.append("<b>Approve:</b>\n");
         for (int i = 0; i < approve.size(); i++) {
-            sb.append(users[approve.get(i)]).append("\n");
+            sb.append(approve.get(i)).append("\n");
         }
-        sb.append("\nReject:\n");
+        sb.append("\n<b>Reject:</b>\n");
         for (int i = 0; i < reject.size(); i++) {
-            sb.append(users[reject.get(i)]).append("\n");
+            sb.append(reject.get(i)).append("\n");
         }
         
         if (approve.size() - reject.size() > 0) {
             sb.append("\n\n").append("Outcome: <b>Approved</b>");
             bot.sendMessage(sb.toString(), game.gameId);
-            Game.voteTrack = 0;
+            game.voteTrack = 0;
             State8.run(game, bot, pendingMission);
         } else {
             sb.append("\n\n").append("Outcome: <b>Rejected</b>");
             bot.sendMessage(sb.toString(), game.gameId);
-            Game.voteTrack++;
-            if (Game.voteTrack == 5) {
+            game.voteTrack++;
+            if (game.voteTrack == 5) {
                 //State11.lose(bot, game);
                 // lose
             }
-//            State4.run(); // incomplete
+            State4.updateKing(bot, game);
         }
     }
 }

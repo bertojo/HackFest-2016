@@ -1,7 +1,7 @@
 import org.telegram.telegrambots.api.objects.Message;
 
 public class State11 {
-    public static void run(AvalonBot bot, Game game, Message message) {
+    public static void run(AvalonBot bot, Game game) {
         //need to reveal Assassin
         if(game.totalWinCount >= 3) {
             //find the assassin in the arraylist 
