@@ -25,17 +25,30 @@ public class AvalonBot extends TelegramLongPollingBot {
             if (message.hasText()) {
             	//Check if game has been create
             	long chatId = message.getChatId();
-            	if (!games.containsKey(chatId)) {
+            	
+            	//
+            	boolean isId = false;
+            	try {
+            		games.containsKey(Long.parseLong(message.getText().replace("/", "")));
+            		isId = true;
+            	} catch (Exception e) {
+            		isId = false;
+            	}
+            	//If a user pm the bot for their role, tell them individually and save that chatId to the user
+            	if (!games.containsKey(chatId) && isId) {
+            		State2.run(this, message, games);
+            	} else if (message.getText().equals("/creategame") && !games.containsKey(chatId)) {
             		//Create a new game
             		Game game = new Game(chatId);
             		games.put(chatId, game);
-            		System.out.println("Game Created, waiting for players");
-            	} else {
+            		sendMessage("Game Created, waiting for players", chatId);
+            	} else if (games.containsKey(chatId)){
             		//Handle the game based on its state
             		Game game = games.get(chatId);
+            		
             		//Do if else statements to handle the state here which are waiting for input
             		if (game.state == 1) { //Handle player joining games
-            			State1.run(game, message);
+            			State1.run(this, game, message);
             		}
             	}
             	
