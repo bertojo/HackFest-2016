@@ -9,7 +9,7 @@ import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 public class AvalonBot extends TelegramLongPollingBot {
 
     public String token = "209510292:AAGF3xpH2h5z7FmXJO1OdsFv_QjL-sx6ITA";
-    public String botName = "AvalonBot";
+    public String botName = "AvalonBotBot";
     public TreeMap<Long, Game> games = new TreeMap<Long, Game>();
 
     @Override
