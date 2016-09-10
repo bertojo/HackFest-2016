@@ -6,7 +6,7 @@ public class State1 {
 		if (message.getText().equals("/join")) {
 			Player newPlayer = new Player(0, message.getFrom().getFirstName());
 			if (game.players.contains(newPlayer)) {
-				String adminMsg = newPlayer.name + " has already joined the game";
+				String adminMsg = newPlayer.name + " has already joined the game (" + game.players.size() + " players)";
 				bot.sendMessage(adminMsg, message.getChatId());
 			} else {
 				game.players.add(newPlayer);
