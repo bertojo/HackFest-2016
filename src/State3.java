@@ -24,7 +24,7 @@ public class State3 {
                     for(Player person : players){
                     	System.out.println(person.name);
                         if(person.role.equals(ally)){
-                            sb.append(person.name + " ");
+                            sb.append(person.name + ", ");
                         }
                     }
                 }
