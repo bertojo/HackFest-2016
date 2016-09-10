@@ -60,7 +60,7 @@ public class State5 {
             bot.sendMessage("Players chosen are the following: ", game.gameId);
             printList(bot, game);
             bot.sendMessage("I will now call state 6.", game.gameId);
-
+            numChosen = 0;
         } else if (msg.getFrom().getFirstName().equals(king.name)) {
             
             String msgUpdate = msg.getText();
