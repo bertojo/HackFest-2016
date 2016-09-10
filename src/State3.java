@@ -12,9 +12,12 @@ public class State3 {
         int i = 0;
         for(Player player : players){
             player.role = roles[i];
+            i++;
+        }
+        for(Player player : players){
+            StringBuilder sb = new StringBuilder();
             String[] allies = new String[4];
             allies = Roles.getAlly(player.role, players.size());
-            StringBuilder sb = new StringBuilder();
             sb.append(Roles.roleDescription(player.role));
             if(!player.role.equals(Roles.goodling)){
                 for (String ally : allies) {
@@ -25,9 +28,9 @@ public class State3 {
                     }
                 }
             }
-            i++;
             bot.sendMessage(sb.toString(), player.id);
         }
+        
         State4.updateKing(bot, game);
     }
 
