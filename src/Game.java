@@ -22,5 +22,6 @@ public class Game {
 	
 	public Game(long id) {
 		gameId = id;
+		state = 1;
 	}
 }
