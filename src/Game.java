@@ -3,7 +3,7 @@ import java.util.ArrayList;
 public class Game {
 	public long gameId;
 	public ArrayList<Player> players;
-	public int voteTrack;
+	public static int voteTrack = 0;
 	public int state;
 	public ArrayList<Player> pendingMissionPlayers;
 	public Map map;
