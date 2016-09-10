@@ -34,8 +34,9 @@ public class State7 {
             	game.failureCount++;
             	game.map.currentQuestNumber++;
             	game.voteTrack = 0;
+            	bot.sendMessage("Evil wins since everyone rejected 5 times GG", game.gameId);
+            	State12.endGame(game, bot);
             }
-            State4.updateKing(bot, game);
         }
     }
 }

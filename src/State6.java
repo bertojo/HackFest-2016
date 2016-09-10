@@ -19,10 +19,10 @@ public class State6 {
 		if (currentPlayer != null) {
 			boolean validCommand = false;
 			if (game.approveRejectMap.get(currentPlayer) == -1) {
-				if (message.getText().equals("/approve")) {
+				if (message.getText().equals("/approve") || message.getText().equals("/approve@AvalonBotBot")) {
 					game.approveRejectMap.put(currentPlayer, 1);
 					validCommand = true;
-				} else if (message.getText().equals("/reject")) {
+				} else if (message.getText().equals("/reject") || message.getText().equals("/reject@AvalonBotBot")) {
 					game.approveRejectMap.put(currentPlayer, 0);
 					validCommand = true;
 				}
@@ -46,13 +46,16 @@ public class State6 {
 						numberOfVoters++;
 					}
 					
-					list.append(entry.getKey().name + " : " + (entry.getValue()==1? "Approved" : entry.getValue()==0? "Rejected" : "Not Voted") + "\n");
-					
-					
+					list.append(entry.getKey().name + " : " + (entry.getValue()!=-1? "Voted" : "Not Voted") + "\n");
 				}
 				bot.sendMessage(list.toString(), game.gameId);
 				if (numberOfVoters >= game.players.size()) {
 					//bot.sendMessage("I will now call state 7", game.gameId);
+					list = new StringBuffer();
+					for (Entry<Player, Integer> entry : game.approveRejectMap.entrySet()) {
+						list.append(entry.getKey().name + " : " + (entry.getValue()==1? "Approved" : entry.getValue()==0? "Rejected" : "Not Voted") + "\n");
+					}
+					bot.sendMessage(list.toString(), game.gameId);
 					game.state++;
 					State7.run(game.approveRejectMap, bot, game, game.pendingMissionPlayers);
 				}

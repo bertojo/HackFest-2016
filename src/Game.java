@@ -12,6 +12,8 @@ public class Game {
 	public int currentQuestNumber;
 	public int totalMissionSuccessCount;
 	public HashMap<Player, Integer> approveRejectMap;
+	public int missionFailCount;
+	public boolean isFirstKing = true;
 	
 	//King stuff
 	public Player king;
