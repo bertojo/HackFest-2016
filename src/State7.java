@@ -6,6 +6,7 @@ import org.telegram.telegrambots.api.objects.Message;
 
 // Approve/Reject states
 public class State7 {
+<<<<<<< HEAD
     public static void run(String[] message, String[] users, AvalonBot bot, Game game) {
         ArrayList<Integer> approve = new ArrayList<Integer>(), reject = new ArrayList<Integer>();
         for (int i = 0; i < message.length; i++) {
@@ -33,6 +34,13 @@ public class State7 {
             sb.append("\n\n").append("Outcome: <b>Rejected</b>");
             bot.sendMessage(sb.toString(), game.gameId);
             State4.run(); // incomplete
+=======
+    public static void run(String message) {
+        if (message.equals("Approve")) {
+            //State8.run(); // incomplete
+        } else {
+            //State4.run();
+>>>>>>> a139936a1172fff9175ad433ae8a60024d50cd4d
         }
     }
 }
