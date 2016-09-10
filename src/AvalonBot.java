@@ -42,7 +42,7 @@ public class AvalonBot extends TelegramLongPollingBot {
             		//Create a new game
             		Game game = new Game(chatId);
             		games.put(chatId, game);
-            		sendMessage("Game Created, waiting for players", chatId);
+            		sendMessage("Game Created, waiting for players (Type /join to join the game)", chatId);
             	} else if (games.containsKey(chatId)){
             		//Handle the game based on its state
             		Game game = games.get(chatId);
