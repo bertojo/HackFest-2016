@@ -48,19 +48,25 @@ public class Roles {
     public static String roleDescription(String role){
         // NEED TO REFACTOR TO BE LESS RUDE :(
         if(role.equals(percival)){
-            return "You are Percival. Your main role is to prevent Merlin from getting fucked in the behind";
+            return "You are Percival. Your main role is to prevent Merlin from getting fucked in the behind \n"
+                    + "Merlin will either be: ";
         } else if(role.equals(morgana)){
-            return "You are Morgana. You gonna act like Merlin to try to fuck him in the behind";
+            return "You are Morgana. You gonna act like Merlin to try to fuck him in the behind \n"
+                    + "The villians this game will be: ";
         } else if(role.equals(merlin)){
-            return "You are Merlin. You gonna lead the good guys to victory without getting fucked in the behind";
+            return "You are Merlin. You gonna lead the good guys to victory without getting fucked in the behind \n"
+                    + "The villians this game will be: ";
         } else if(role.equals(mordred)){
-            return "You are Mordred. You gonna try fuck everyone in the behind";
+            return "You are Mordred. You gonna try fuck everyone in the behind \n"
+                    + "The villians this game will be: ";
         } else if(role.equals(assassin)){
-            return "You are Assassin. You gonna try fuck Merlin in the behind";
+            return "You are Assassin. You gonna try fuck Merlin in the behind \n"
+                    + "The villians this game will be: ";
         } else if(role.equals(goodling)){
             return "You are a Loyal Servant of Arthur. Nobody wanna fuck you in the behind";
         } else if (role.equals(badling)){
-            return "You are a Minion of Mordred. You wanna fuck people in the behind but no power to fuck";
+            return "You are a Minion of Mordred. You wanna fuck people in the behind but no power to fuck \n"
+                    + "The villians this game will be: ";
         } else {
             return "What are you? Fuck off pls";
         }

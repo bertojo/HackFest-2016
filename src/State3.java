@@ -15,9 +15,15 @@ public class State3 {
             String[] allies = new String[4];
             allies = Roles.getAlly(player.role, players.size());
             StringBuilder sb = new StringBuilder();
-            sb.append(Roles.roleDescription(player.role) + "\nYour allies are : ");
-            for (String ally : allies) {
-                sb.append(ally + " ");
+            sb.append(Roles.roleDescription(player.role));
+            if(!player.role.equals(Roles.goodling)){
+                for (String ally : allies) {
+                    for(Player person : players){
+                        if(person.role.equals(ally)){
+                            sb.append(person.name + " ");
+                        }
+                    }
+                }
             }
             i++;
             bot.sendMessage(sb.toString(), player.id);
