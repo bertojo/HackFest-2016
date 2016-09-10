@@ -25,8 +25,17 @@ public class AvalonBot extends TelegramLongPollingBot {
             if (message.hasText()) {
             	//Check if game has been create
             	long chatId = message.getChatId();
+            	
+            	//
+            	boolean isId = false;
+            	try {
+            		games.containsKey(Long.parseLong(message.getText().replace("/", "")));
+            		isId = true;
+            	} catch (Exception e) {
+            		isId = false;
+            	}
             	//If a user pm the bot for their role, tell them individually and save that chatId to the user
-            	if (games.containsKey(Long.parseLong(message.getText().replace("/", ""))) && !games.containsKey(chatId)) {
+            	if (!games.containsKey(chatId) && isId) {
             		//Tell users their role if they pm the bot the gameid for their role
             		sendMessage("You are a bitch", chatId);
             		Game game = games.get(Long.parseLong(message.getText().replace("/", "")));
