@@ -19,10 +19,10 @@ public class State6 {
 		if (currentPlayer != null) {
 			boolean validCommand = false;
 			if (game.approveRejectMap.get(currentPlayer) == -1) {
-				if (message.getText().equals("/approve")) {
+				if (message.getText().equals("/approve") || message.getText().equals("/approve@AvalonBotBot")) {
 					game.approveRejectMap.put(currentPlayer, 1);
 					validCommand = true;
-				} else if (message.getText().equals("/reject")) {
+				} else if (message.getText().equals("/reject") || message.getText().equals("/reject@AvalonBotBot")) {
 					game.approveRejectMap.put(currentPlayer, 0);
 					validCommand = true;
 				}

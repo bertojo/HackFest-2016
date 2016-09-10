@@ -33,7 +33,7 @@ public class State9 {
         	// If number of fails is more than or equal to the threshold, mission has failed!
     		if (count < threshold) {
     			bot.sendMessage("Mission SUCCESS!", game.gameId);
-    			game.successCount++;
+    			game.successCount++; //Change back to ++
     		} else {
     			bot.sendMessage("Mission FAIL!", game.gameId);
     			game.failureCount++;
