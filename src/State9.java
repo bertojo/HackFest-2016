@@ -10,6 +10,15 @@ public class State9 {
 		}
 		return false;
 	}
+	
+	public static String checkRole(ArrayList<Player> list, Long id) {
+		for (Player player : list) {
+			if (player.playerId == id) {
+				return player.role;
+			}
+		}
+		return "";
+	}
 
 	public static void run(Message message, AvalonBot bot, Game game, Map map) {
 		System.out.println(message.getText());
@@ -20,8 +29,14 @@ public class State9 {
         	if (message.getText().contains("success")) {
         		bot.sendMessage("Choice Accepted : SUCCESS!", message.getChatId());
         	} else if (message.getText().contains("fail")) {
-        		bot.sendMessage("Choice Accepted : FAIL!", message.getChatId());
-        		count ++;
+        		String role = checkRole(game.pendingMissionPlayers, message.getChatId());
+        		if (role.equals(Roles.merlin) || role.equals(Roles.percival) || role.equals(Roles.goodling)) {
+        			bot.sendMessage("You cheebye. You are a good man. You don't put fail", message.getChatId());
+        			bot.sendMessage("I have chosen SUCCESS for you. KTHXBYE", message.getChatId());
+        		} else {
+	        		bot.sendMessage("Choice Accepted : FAIL!", message.getChatId());
+	        		count ++;
+        		}
         	}
         	game.pmMissionCount ++;
         } else {
