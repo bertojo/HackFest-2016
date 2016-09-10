@@ -4,13 +4,13 @@ import org.telegram.telegrambots.api.objects.Message;
 public class State1 {
 	public static void run(AvalonBot bot, Game game, Message message) {
 		if (message.getText().equals("/join")) {
-			Player newPlayer = new Player(message.getFrom().getId(), message.getFrom().getFirstName());
+			Player newPlayer = new Player(0, message.getFrom().getFirstName());
 			if (game.players.contains(newPlayer)) {
-				String adminMsg = newPlayer.name + " has already joined the game";
+				String adminMsg = newPlayer.name + " has already joined the game (" + game.players.size() + " players)";
 				bot.sendMessage(adminMsg, message.getChatId());
 			} else {
 				game.players.add(newPlayer);
-				String adminMsg = "Added " + newPlayer.name + "!";
+				String adminMsg = "Added " + newPlayer.name + "! (" + game.players.size() + " players)";
 				bot.sendMessage(adminMsg, message.getChatId());
 			}
 		} else if (message.getText().equals("/quit")) {
@@ -24,7 +24,7 @@ public class State1 {
 			} else if (game.players.size() > 11) {
 				bot.sendMessage("Too many players! Please get some players to quit the game " + game.players.toString(), message.getChatId());
 			} else {
-				bot.sendMessage("Game is starting, please PM me the gameId for your role and allies (Game id : " + game.gameId + " )", message.getChatId());
+				bot.sendMessage("Game is starting, please PM me the gameId for your role and allies (Game id:" + game.gameId + ")", message.getChatId());
 				game.state++;
 			}
 		}

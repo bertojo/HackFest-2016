@@ -21,12 +21,13 @@ public class AvalonBot extends TelegramLongPollingBot {
     public void onUpdateReceived(Update update) {
         // check if the update has a message
         if (update.hasMessage()) {
+        	System.out.println(update.getMessage());
             Message message = update.getMessage();
             if (message.hasText()) {
             	//Check if game has been create
             	long chatId = message.getChatId();
             	
-            	//
+            	//Check if the pm is the id or not
             	boolean isId = false;
             	try {
             		games.containsKey(Long.parseLong(message.getText().replace("/", "")));
@@ -41,7 +42,7 @@ public class AvalonBot extends TelegramLongPollingBot {
             		//Create a new game
             		Game game = new Game(chatId);
             		games.put(chatId, game);
-            		sendMessage("Game Created, waiting for players", chatId);
+            		sendMessage("Game Created, waiting for players (Type /join to join the game)", chatId);
             	} else if (games.containsKey(chatId)){
             		//Handle the game based on its state
             		Game game = games.get(chatId);
@@ -49,9 +50,10 @@ public class AvalonBot extends TelegramLongPollingBot {
             		//Do if else statements to handle the state here which are waiting for input
             		if (game.state == 1) { //Handle player joining games
             			State1.run(this, game, message);
+            		} else if (game.state == 5) {
+            		    State5.receiveUpdate(this, game, message);
             		}
             	}
-            	
             }
         }
     }

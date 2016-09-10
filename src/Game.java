@@ -3,13 +3,12 @@ import java.util.ArrayList;
 public class Game {
 	public long gameId;
 	public ArrayList<Player> players;
-	public int voteTrack;
+	public static int voteTrack = 0;
 	public int state;
 	public ArrayList<Player> pendingMissionPlayers;
 	public Map map;
 	public int pmChannelCount;
-	public int currentQuest;
-	public int pmMissionCount;
+	public int currentQuestNumber;
 	
 	//King stuff
 	public Player king;
@@ -22,6 +21,12 @@ public class Game {
 	//For mission success/failure
 	public int successCount;
 	public int failureCount;
+	
+	//For total number of wins
+	//When total number of wins == 3, good guys win, need reveal assassin 
+	public int totalWinCount;
+	
+	public int pmMissionCount;
 	
 	public Game(long id) {
 		gameId = id;

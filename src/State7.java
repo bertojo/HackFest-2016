@@ -1,12 +1,10 @@
+import java.util.List;
 import java.util.ArrayList;
 import java.lang.StringBuilder;
-import org.telegram.telegrambots.TelegramApiException;
-import org.telegram.telegrambots.api.methods.send.SendMessage;
-import org.telegram.telegrambots.api.objects.Message;
 
 // Approve/Reject states
 public class State7 {
-    public static void run(String[] message, String[] users, AvalonBot bot, Game game) {
+    public static void run(String[] message, String[] users, AvalonBot bot, Game game, List<Player> pendingMission) {
         ArrayList<Integer> approve = new ArrayList<Integer>(), reject = new ArrayList<Integer>();
         for (int i = 0; i < message.length; i++) {
             if (message[i].equals("Approve")) {
@@ -28,10 +26,16 @@ public class State7 {
         if (approve.size() - reject.size() > 0) {
             sb.append("\n\n").append("Outcome: <b>Approved</b>");
             bot.sendMessage(sb.toString(), game.gameId);
-//            State8.run(); // incomplete
+            Game.voteTrack = 0;
+            State8.run(game, bot, pendingMission);
         } else {
             sb.append("\n\n").append("Outcome: <b>Rejected</b>");
             bot.sendMessage(sb.toString(), game.gameId);
+            Game.voteTrack++;
+            if (Game.voteTrack == 5) {
+                //State11.lose(bot, game);
+                // lose
+            }
 //            State4.run(); // incomplete
         }
     }

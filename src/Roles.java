@@ -46,22 +46,80 @@ public class Roles {
     }
     
     public static String roleDescription(String role){
-        if(role == percival){
-            return "You are Percival. Your main role is to prevent Merlin from getting fucked in the behind";
-        } else if(role == morgana){
-            return "You are Morgana. You gonna act like Merlin to try to fuck him in the behind";
-        } else if(role == merlin){
-            return "You are Merlin. You gonna lead the good guys to victory without getting fucked in the behind";
-        } else if(role == mordred){
-            return "You are Mordred. You gonna try fuck everyone in the behind";
-        } else if(role == assassin){
-            return "You are Assassin. You gonna try fuck Merlin in the behind";
-        } else if(role == goodling){
-            return "You are a Loyal Servant of Arthur. Nobody wanna fuck you in the behind";
-        } else if (role == badling){
-            return "You are a Minion of Mordred. You wanna fuck people in the behind but no power to fuck";
+        // NEED TO REFACTOR TO BE LESS RUDE :(
+        if(role.equals(percival)){
+            return "You are Percival. Your goal is to try to protect the Merlin! \n"
+                    + "Merlin will either be: ";
+        } else if(role.equals(morgana)){
+            return "You are Morgana. Pretend to be like Merlin to trick Percival onto your side! \n"
+                    + "The villians this game will be: ";
+        } else if(role.equals(merlin)){
+            return "You are Merlin. Try to win the game without revealing yourself! \n"
+                    + "The villians this game will be (minus Mordred if he is in): ";
+        } else if(role.equals(mordred)){
+            return "You are Mordred. Merlin doesn't know who you are, make use of that fact to make the villians win! \n"
+                    + "The villians this game will be: ";
+        } else if(role.equals(assassin)){
+            return "You are Assassin. Try to assassinate Merlin! \n"
+                    + "The villians this game will be: ";
+        } else if(role.equals(goodling)){
+            return "You are a Loyal Servant of Arthur. Use the power of democracy to make the good guys win!";
+        } else if (role.equals(badling)){
+            return "You are a Minion of Mordred. Hide yourself amongst the Loyal Servants and make sure they lose! \n"
+                    + "The villians this game will be: ";
         } else {
-            return "What are you? Fuck off pls";
+            return "This message should not be appearing. Sorry there seems to be a bug. D:";
         }
+    }
+    
+    private static String[] getBadGuys(String role, int numPlayers){
+        String[] ally = new String[4];
+        if(numPlayers == MIN_NUM){
+            ally[0] = assassin;
+            ally[1] = badling;
+        } else if (numPlayers >= 6){
+            ally[0] = assassin;
+            ally[1] = morgana;
+        } else if(numPlayers >= 9){
+            ally[0] = assassin;
+            ally[1] = morgana;
+            if(!role.equals(merlin)){
+                ally[2] = mordred;
+            }
+        } else if(numPlayers == MAX_NUM){
+            ally[0] = assassin;
+            ally[1] = morgana;
+            ally[2] = badling;
+            if(!role.equals(merlin)){
+                ally[3] = mordred;
+            }
+        }
+        return ally;
+    }
+    
+    public static String[] getAlly(String role, int numPlayers){
+        String[] ally = new String[3];
+        // 5 - 3 g 2 b
+        // 6 - 4 g 2 b
+        // 7 - 4 g 3 b
+        // 8 - 5 g 3 b
+        // 9 - 6 g 3 b
+        // 10 - 6 g 4 b
+        // doing it for the bad guys
+
+        if(role == percival){
+            if(Math.random()<0.5){
+                ally[0] = merlin;
+                ally[1] = morgana;
+            } else {
+                ally[1] = merlin;
+                ally[0] = morgana;
+            }
+        } else if(role == goodling){
+            ;
+        } else{
+           ally = getBadGuys(role, numPlayers);
+        }
+        return ally;
     }
 }

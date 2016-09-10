@@ -1,5 +1,4 @@
 
-
 public class Map {
 	public int totalNumberOfPlayers;
 	public int[] missionPlayerCount;
@@ -7,21 +6,21 @@ public class Map {
 	public int currentQuestNumber;
 	public static Map[] maps;
 
-	private int[] fiveP = {2,3,2,3,3};
-	private int[] fiveF = {1,1,1,1,1};
-	private	int[] sixP = {2,3,4,3,4};
-	private	int[] sixF = {1,1,1,1,1};
-	private	int[] sevenP = {2,3,3,4,4};
-	private	int[] sevenF = {1,1,1,2,1};
-	private	int[] eightP = {3,4,4,5,5};
-	private	int[] eightF = {1,1,1,2,1};
-	private	int[] nineP = {3,4,4,5,5};
-	private	int[] nineF = {1,1,1,2,1};
-	private	int[] tenP = {3,4,4,5,5};
-	private	int[] tenF = {1,1,1,2,1};
-	
-	public Map(int total, int[] mission, int[] fail) {
-		switch(total) {
+	private int[] fiveP = { 2, 3, 2, 3, 3 };
+	private int[] fiveF = { 1, 1, 1, 1, 1 };
+	private int[] sixP = { 2, 3, 4, 3, 4 };
+	private int[] sixF = { 1, 1, 1, 1, 1 };
+	private int[] sevenP = { 2, 3, 3, 4, 4 };
+	private int[] sevenF = { 1, 1, 1, 2, 1 };
+	private int[] eightP = { 3, 4, 4, 5, 5 };
+	private int[] eightF = { 1, 1, 1, 2, 1 };
+	private int[] nineP = { 3, 4, 4, 5, 5 };
+	private int[] nineF = { 1, 1, 1, 2, 1 };
+	private int[] tenP = { 3, 4, 4, 5, 5 };
+	private int[] tenF = { 1, 1, 1, 2, 1 };
+
+	public Map(int total) {
+		switch (total) {
 		case 5:
 			totalNumberOfPlayers = 5;
 			missionPlayerCount = fiveP;
