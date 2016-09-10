@@ -23,6 +23,7 @@ public class State5 {
         keyboardMessage.setChatId(gameID);
         keyboardMessage.enableMarkdown(true);
         keyboardMessage.setReplyMarkup(specialKeyboard);
+<<<<<<< HEAD
         bot.sendMessage("Please choose " + numOfQuesters + " players.", king.id);
         
         try{
@@ -34,6 +35,10 @@ public class State5 {
         if (numOfQuesters) {
             
         } 
+=======
+        //bot.sendMessage("Please choose " + game.map.missionPlayerCount[game.questNumber] + " players.", king.id);
+        //bot.sendMessage(keyboardMessage);
+>>>>>>> 0918ceb31051a5ff24b6c0835d183af070480c62
     }
 
     public static ReplyKeyboardMarkup getQuestChoosingKeyboard(AvalonBot bot, Game game) {
