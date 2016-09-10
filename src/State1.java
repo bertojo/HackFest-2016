@@ -3,7 +3,7 @@ import org.telegram.telegrambots.api.objects.Message;
 //wait for user to join, maybe can include timer
 public class State1 {
 	public static void run(AvalonBot bot, Game game, Message message) {
-		if (message.getText().equals("/join")) {
+		if (message.getText().equals("/join") || message.getText().equals("/join@AvalonBotBot")) {
 			Player newPlayer = new Player(0, message.getFrom().getFirstName());
 			if (game.players.contains(newPlayer)) {
 				String adminMsg = newPlayer.name + " has already joined the game (" + game.players.size() + " players)";
