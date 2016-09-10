@@ -26,10 +26,16 @@ public class State7 {
         if (approve.size() - reject.size() > 0) {
             sb.append("\n\n").append("Outcome: <b>Approved</b>");
             bot.sendMessage(sb.toString(), game.gameId);
+            Game.voteTrack = 0;
             State8.run(game, bot, pendingMission);
         } else {
             sb.append("\n\n").append("Outcome: <b>Rejected</b>");
             bot.sendMessage(sb.toString(), game.gameId);
+            Game.voteTrack++;
+            if (Game.voteTrack == 5) {
+                //State11.lose(bot, game);
+                // lose
+            }
 //            State4.run(); // incomplete
         }
     }

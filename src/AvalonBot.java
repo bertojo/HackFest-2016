@@ -50,6 +50,8 @@ public class AvalonBot extends TelegramLongPollingBot {
             		//Do if else statements to handle the state here which are waiting for input
             		if (game.state == 1) { //Handle player joining games
             			State1.run(this, game, message);
+            		} else if (game.state == 5) {
+            		    State5.receiveUpdate(this, game, message);
             		}
             	}
             }
