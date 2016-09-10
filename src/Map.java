@@ -20,6 +20,7 @@ public class Map {
 	private int[] tenF = { 1, 1, 1, 2, 1 };
 
 	public Map(int total) {
+		System.out.println("Total: " + total);
 		switch (total) {
 		case 5:
 			totalNumberOfPlayers = 5;

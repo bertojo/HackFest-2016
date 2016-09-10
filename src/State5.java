@@ -55,16 +55,16 @@ public class State5 {
         Player king = game.king;
         int numOfQuesters = game.map.missionPlayerCount[game.currentQuestNumber];
         int remainder = numOfQuesters - numChosen;
-        
+
         if (numChosen == numOfQuesters) {
             bot.sendMessage("Players chosen are the following: ", game.gameId);
             printList(bot, game);
             bot.sendMessage("I will now call state 6.", game.gameId);
 
-        } else if (msg.getChatId() == king.id) {
+        } else if (msg.getFrom().getFirstName().equals(king.name)) {
             
             String msgUpdate = msg.getText();
-            String prefix = msgUpdate.trim().substring(0, 8);
+            String prefix = msgUpdate.trim().substring(0, 7);
             if (prefix.equals("/choose")) {
                 String chooseWho = msgUpdate.trim().substring(8, msgUpdate.length()).trim();
                 Player playerChosen = findPlayer (game, chooseWho);

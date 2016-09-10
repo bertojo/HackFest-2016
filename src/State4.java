@@ -16,7 +16,9 @@ public class State4 {
             game.king = game.players.get(game.kingCounter);
         }
         
-        bot.sendMessage("The king is " + game.players.get(game.kingCounter).name + "!", game.gameId);
-        State5.kingChoosePlayers(bot, game);
+        bot.sendMessage("The king is " + game.king.name + "!", game.gameId);
+        bot.sendMessage("The king shall now choose some players for the quest.", game.gameId);
+        bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
+        game.state++;
     }
 }

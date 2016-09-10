@@ -3,10 +3,11 @@ public class Player {
 	public String role;
 	public boolean isKing;
 	public String name;
+	public long playerId;
 	public long id;
 	
 	public Player(long id, String name) {
-		this.id = id;
+		this.playerId = id;
 		this.name = name;
 	}
 	
@@ -22,6 +23,6 @@ public class Player {
 	
 	@Override
 	public String toString() {
-		return "(" + id + ")" + name;
+		return name;
 	}
 }
