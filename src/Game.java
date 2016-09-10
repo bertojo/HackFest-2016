@@ -22,6 +22,12 @@ public class Game {
 	public int successCount;
 	public int failureCount;
 	
+	//For total number of wins
+	//When total number of wins == 3, good guys win, need reveal assassin 
+	public int totalWinCount;
+	
+	public int pmMissionCount;
+	
 	public Game(long id) {
 		gameId = id;
 		state = 1;
