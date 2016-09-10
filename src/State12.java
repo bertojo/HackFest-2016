@@ -11,6 +11,7 @@ public class State12 {
         }
         sb.append("\n\n Yay! Type /creategame to play again!");
         
+        bot.games.remove(game.gameId);
         bot.sendMessage(sb.toString(), game.gameId);
     }
 
