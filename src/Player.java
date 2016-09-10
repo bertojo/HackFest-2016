@@ -9,4 +9,14 @@ public class Player {
 		this.id = id;
 		this.name = name;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Player) {
+			Player player = (Player)obj;
+			return id==player.id && name.equals(player.name);
+		} else {
+			return false;
+		}
+	}
 }

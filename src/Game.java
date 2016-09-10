@@ -1,11 +1,11 @@
-import java.util.LinkedList;
+import java.util.ArrayList;
 
 public class Game {
 	public long gameId;
-	public LinkedList<Player> players;
+	public ArrayList<Player> players;
 	public int voteTrack;
 	public int state;
-	public LinkedList<Player> pendingMissionPlayers;
+	public ArrayList<Player> pendingMissionPlayers;
 	public Map map;
 	
 	//King stuff
@@ -23,7 +23,7 @@ public class Game {
 	public Game(long id) {
 		gameId = id;
 		state = 1;
-		players = new LinkedList<Player>();
-		pendingMissionPlayers = new LinkedList<Player>();
+		players = new ArrayList<Player>();
+		pendingMissionPlayers = new ArrayList<Player>();
 	}
 }
