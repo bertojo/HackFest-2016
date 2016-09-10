@@ -7,6 +7,8 @@ public class Game {
 	public int state;
 	public ArrayList<Player> pendingMissionPlayers;
 	public Map map;
+	public int pmChannelCount;
+	public int currentQuest;
 	
 	//King stuff
 	public Player king;
