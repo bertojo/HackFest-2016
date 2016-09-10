@@ -34,6 +34,7 @@ public class State3 {
         
         //Create the map
         game.map = new Map(players.size());
+        game.state++;
         State4.updateKing(bot, game);
     }
 
