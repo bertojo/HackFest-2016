@@ -19,6 +19,7 @@ public class State3 {
             if(!player.role.equals(Roles.goodling)){
                 for (String ally : allies) {
                     for(Player person : players){
+                    	System.out.println(person.name);
                         if(person.role.equals(ally)){
                             sb.append(person.name + " ");
                         }
