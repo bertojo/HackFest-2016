@@ -1,7 +1,7 @@
 import java.util.LinkedList;
 
 public class Game {
-	public int gameId;
+	public long gameId;
 	public LinkedList<Player> players;
 	public int voteTrack;
 	public int state;
@@ -19,4 +19,8 @@ public class Game {
 	//For mission success/failure
 	public int successCount;
 	public int failureCount;
+	
+	public Game(long id) {
+		gameId = id;
+	}
 }
