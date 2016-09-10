@@ -9,6 +9,7 @@ public class Game {
 	public Map map;
 	public int pmChannelCount;
 	public int currentQuestNumber;
+	public int totalMissionSuccessCount;
 	
 	//King stuff
 	public Player king;
