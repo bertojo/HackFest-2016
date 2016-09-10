@@ -49,24 +49,24 @@ public class Roles {
         // NEED TO REFACTOR TO BE LESS RUDE :(
         if(role.equals(percival)){
             return "You are Percival. Your goal is to try to protect the Merlin! \n"
-                    + "Merlin will either be: ";
+                    + "Merlin will either be: \n";
         } else if(role.equals(morgana)){
             return "You are Morgana. Pretend to be like Merlin to trick Percival onto your side! \n"
-                    + "The villians this game will be: ";
+                    + "The villians this game will be: \n";
         } else if(role.equals(merlin)){
             return "You are Merlin. Try to win the game without revealing yourself! \n"
-                    + "The villians this game will be (minus Mordred if he is in): ";
+                    + "The villians this game will be (minus Mordred if he is in): \n";
         } else if(role.equals(mordred)){
             return "You are Mordred. Merlin doesn't know who you are, make use of that fact to make the villians win! \n"
-                    + "The villians this game will be: ";
+                    + "The villians this game will be: \n";
         } else if(role.equals(assassin)){
             return "You are Assassin. Try to assassinate Merlin! \n"
-                    + "The villians this game will be: ";
+                    + "The villians this game will be: \n";
         } else if(role.equals(goodling)){
-            return "You are a Loyal Servant of Arthur. Use the power of democracy to make the good guys win!";
+            return "You are a Loyal Servant of Arthur. Use the power of democracy to make the good guys win! \n";
         } else if (role.equals(badling)){
             return "You are a Minion of Mordred. Hide yourself amongst the Loyal Servants and make sure they lose! \n"
-                    + "The villians this game will be: ";
+                    + "The villians this game will be: \n";
         } else {
             return "This message should not be appearing. Sorry there seems to be a bug. D:";
         }
