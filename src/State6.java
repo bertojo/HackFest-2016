@@ -37,7 +37,6 @@ public class State6 {
 				} else if (game.approveRejectMap.get(currentPlayer) == 0) {
 					approveOrReject = "Rejected";
 				}
-				bot.sendMessage(currentPlayer.name + " : " + approveOrReject, message.getChatId());
 				
 				StringBuffer list = new StringBuffer();
 				int numberOfVoters = 0;
@@ -47,13 +46,14 @@ public class State6 {
 						numberOfVoters++;
 					}
 					
-					list.append(entry.getKey().name + " : " + (entry.getValue()==1? "Approved" : "Rejected"));
-					bot.sendMessage(list.toString(), game.gameId);
+					list.append(entry.getKey().name + " : " + (entry.getValue()==1? "Approved" : entry.getValue()==0? "Rejected" : "Not Voted") + "\n");
 					
 					if (numberOfVoters >= game.players.size()) {
 						bot.sendMessage("I will now call state 7", game.gameId);
 					}
 				}
+				
+				bot.sendMessage(list.toString(), game.gameId);
 			}
 		}
 	}
