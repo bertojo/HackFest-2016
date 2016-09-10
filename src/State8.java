@@ -6,6 +6,7 @@ public class State8 {
         }
         game.state++;
         game.pmMissionCount = 0;
+        game.missionFailCount = 0;
     }
         
 //        List<KeyboardRow> keyboard = new ArrayList<>();
