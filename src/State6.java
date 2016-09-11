@@ -48,7 +48,7 @@ public class State6 {
 					
 					list.append(entry.getKey().name + " : " + (entry.getValue()!=-1? "Voted" : "Not Voted") + "\n");
 				}
-				bot.sendMessage(list.toString(), game.gameId);
+				
 				if (numberOfVoters >= game.players.size()) {
 					//bot.sendMessage("I will now call state 7", game.gameId);
 					list = new StringBuffer();
@@ -58,6 +58,8 @@ public class State6 {
 					bot.sendMessage(list.toString(), game.gameId);
 					game.state++;
 					State7.run(game.approveRejectMap, bot, game, game.pendingMissionPlayers);
+				} else {
+					bot.sendMessage(list.toString(), game.gameId);
 				}
 			}
 		}
