@@ -58,9 +58,9 @@ public class State5 {
             
             String msgUpdate = msg.getText();
             String prefix = msgUpdate.trim().substring(0, 7);
+            String chooseWho = msgUpdate.trim().substring(8, msgUpdate.length()).trim();
+            Player playerChosen = findPlayer (game, chooseWho);
             if (prefix.equals("/choose")) {
-                String chooseWho = msgUpdate.trim().substring(8, msgUpdate.length()).trim();
-                Player playerChosen = findPlayer (game, chooseWho);
                 if(!playerChosen.equals(null)){
                     bot.sendMessage("The king shall now choose " + (remainder-1) + " more players for the quest.", game.gameId);
                     bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
@@ -88,6 +88,21 @@ public class State5 {
                     	game.approveRejectMap.put(player, -1);
                     }
                     State6.init(bot, game);
+                }
+            } else if (prefix.equals("/remove")) {
+            	if(!playerChosen.equals(null)){
+                    bot.sendMessage("The king shall now choose " + (remainder-1) + " more players for the quest.", game.gameId);
+                    bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
+                
+                    if (!game.pendingMissionPlayers.contains(playerChosen)) {
+                        bot.sendMessage("THIS GUY IS NOT IN THE TEAM LAH.", game.gameId);
+                    } else {
+                        game.pendingMissionPlayers.remove(playerChosen);
+                        bot.sendMessage(chooseWho + " has been removed.", game.gameId);
+                        numChosen++;
+                    }
+                } else {
+                    bot.sendMessage("Player not found", game.gameId);
                 }
             }
         } // else ignore

@@ -14,8 +14,9 @@ public class State4 {
             game.king = game.players.get(game.kingCounter);
         }
         
-        bot.sendMessage("The king is " + game.king.name + "!", game.gameId);
-        bot.sendMessage("The king shall now choose " + game.map.missionPlayerCount[game.currentQuestNumber] + " players for the quest.", game.gameId);
+        bot.sendMessage(String.format("Current quest number is ", game.currentQuestNumber+1), game.gameId);
+        bot.sendMessage("The King now is " + game.king.name + "!", game.gameId);
+        bot.sendMessage("The King shall now choose " + game.map.missionPlayerCount[game.currentQuestNumber] + " players for the quest.", game.gameId);
         bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
         game.state++;
     }
