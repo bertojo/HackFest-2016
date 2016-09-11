@@ -2,7 +2,7 @@ public class State8 {
     
     public static void run(Game game, AvalonBot bot) {         
         for (int i = 0; i < game.pendingMissionPlayers.size(); i++) {
-            bot.sendMessage("Type /"+game.gameId+" success or /"+game.gameId+" fail", game.pendingMissionPlayers.get(i).id);
+            bot.sendMessage("Type /"+(game.gameId-1)+" success or /"+(game.gameId-1)+" fail", game.pendingMissionPlayers.get(i).id);
         }
         game.state++;
         game.pmMissionCount = 0;

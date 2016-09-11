@@ -10,7 +10,7 @@ public class State4 {
             game.isFirstKing = false;
             game.king = game.players.get(kingNum);
         } else {
-            game.kingCounter++;
+            game.kingCounter = (game.kingCounter + 1) % game.players.size();
             game.king = game.players.get(game.kingCounter);
         }
         int numPlayersNeeded = game.map.missionPlayerCount[game.currentQuestNumber];
