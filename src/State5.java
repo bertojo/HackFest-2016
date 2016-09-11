@@ -59,15 +59,19 @@ public class State5 {
             if (prefix.equals("/choose")) {
                 if(!playerChosen.equals(null)){
                     String chooseHowManyMorePplMsg = "The king shall now choose " + (remainder-1) + " more players for the quest.\nPlease choose players in the following format: /choose playerName.";
-                    bot.sendMessage(chooseHowManyMorePplMsg, game.gameId);
+                    StringBuilder toSend = new StringBuilder(chooseHowManyMorePplMsg);
+                    //bot.sendMessage(chooseHowManyMorePplMsg, game.gameId);
                 
                     if (game.pendingMissionPlayers.contains(playerChosen)) {
-                        bot.sendMessage("This player has already been chosen.", game.gameId);
+                        //bot.sendMessage("This player has already been chosen.", game.gameId);
+                    	toSend.append("\nThis player has already been chosen.");
                     } else {
                         game.pendingMissionPlayers.add(playerChosen);
-                        bot.sendMessage(chooseWho + " has been chosen!", game.gameId);
+                        toSend.append("\n" + chooseWho + " has been chosen!");
+                        //bot.sendMessage(chooseWho + " has been chosen!", game.gameId);
                         game.numChosen++;
                     }
+                    bot.sendMessage(toSend.toString(), game.gameId);
                 } else {
                     bot.sendMessage("Player not found", game.gameId);
                 }
