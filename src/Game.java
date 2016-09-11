@@ -14,6 +14,7 @@ public class Game {
 	public HashMap<Player, Integer> approveRejectMap;
 	public int missionFailCount;
 	public boolean isFirstKing = true;
+	public int numChosen = 0;
 	
 	//King stuff
 	public Player king;

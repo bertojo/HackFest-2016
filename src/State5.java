@@ -11,9 +11,6 @@ import org.telegram.telegrambots.api.objects.replykeyboard.buttons.KeyboardRow;
 
 public class State5 {
     
-    public static int numChosen = 0;
-
-    
     public static void kingChoosePlayers(AvalonBot bot, Game game) {
         Player king = game.king;
         int numOfQuesters = game.map.missionPlayerCount[game.currentQuestNumber];
@@ -52,7 +49,7 @@ public class State5 {
     public static void receiveUpdate (AvalonBot bot, Game game, Message msg) {
         Player king = game.king;
         int numOfQuesters = game.map.missionPlayerCount[game.currentQuestNumber];
-        int remainder = numOfQuesters - numChosen;
+        int remainder = numOfQuesters - game.numChosen;
 
         if (msg.getFrom().getFirstName().equals(king.name)) {
             
@@ -70,17 +67,17 @@ public class State5 {
                     } else {
                         game.pendingMissionPlayers.add(playerChosen);
                         bot.sendMessage(chooseWho + " has been chosen!", game.gameId);
-                        numChosen++;
+                        game.numChosen++;
                     }
                 } else {
                     bot.sendMessage("Player not found", game.gameId);
                 }
                 
                 //next state if fixed
-                if (numChosen == numOfQuesters) {
+                if (game.numChosen == numOfQuesters) {
                     bot.sendMessage("Players chosen are the following: ", game.gameId);
                     printList(bot, game);
-                    numChosen = 0;
+                    game.numChosen = 0;
                     
                     game.state++;
                     game.approveRejectMap = new HashMap<Player, Integer>();
@@ -99,7 +96,7 @@ public class State5 {
                     } else {
                         game.pendingMissionPlayers.remove(playerChosen);
                         bot.sendMessage(chooseWho + " has been removed.", game.gameId);
-                        numChosen--;
+                        game.numChosen--;
                     }
                 } else {
                     bot.sendMessage("Player not found", game.gameId);
