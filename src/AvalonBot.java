@@ -38,7 +38,7 @@ public class AvalonBot extends TelegramLongPollingBot {
             	//If a user pm the bot for their role, tell them individually and save that chatId to the user
             	if (!games.containsKey(chatId) && isId) { //is a pm
             		State2.run(this, message, games);
-            	} else if (message.getText().contains(" success") || message.getText().contains(" fail")) { //is a pm
+            	} else if (message.getText().contains("_success") || message.getText().contains("_fail")) { //is a pm
             		long id = Long.parseLong(message.getText().replace("/", "").replace(" success", "").replace(" fail", "")) * -1;
             		Game currentGame = games.get(id);
             		System.out.println(currentGame.state);
