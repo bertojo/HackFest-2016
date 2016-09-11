@@ -18,7 +18,7 @@ public class State11 {
             bot.sendMessage(game.players.get(indexOfAssassin) + " is the Assassin! Please /choose someone to be Merlin and assassinate him!", game.gameId);
             
         } else { 
-            bot.sendMessage("LOYAL SERVANTS OF ARTHUR. YOU HAD ONE JOB AND YOU FUCKED UP.", game.gameId);
+            bot.sendMessage("Loyal servants of Arthur has lost!", game.gameId);
             State12.endGame(game, bot);
         }
     }
@@ -32,13 +32,13 @@ public class State11 {
     			//Check if player assassinated is merlin
     			for (Player loopPlayer : game.players) {
     				if (chosen.equals(loopPlayer.name) && loopPlayer.role.equals(Roles.merlin)) {
-    					bot.sendMessage("ASSINATED, GG GOOD GAME", game.gameId);
+    					bot.sendMessage("Merlin has been assassinated!\n Minions of Mordered win!", game.gameId);
     					success = true;
     				}
     			}
     			
     			if (!success) {
-    				bot.sendMessage("Assassinated failed :(", game.gameId);
+    				bot.sendMessage("The assassination has failed to kill Merlin :(\n Loyal servants of Arthur has won!", game.gameId);
     			}
     			State12.endGame(game, bot);
     		}
