@@ -7,6 +7,7 @@ public class State4 {
         if (game.isFirstKing) {
             Random rand = new Random();
             int kingNum = rand.nextInt(game.players.size());
+            game.kingCounter = kingNum;
             game.isFirstKing = false;
             game.king = game.players.get(kingNum);
         } else {
