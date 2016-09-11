@@ -62,14 +62,14 @@ public class State5 {
                 String chooseWho = msgUpdate.trim().substring(8, msgUpdate.length()).trim();
                 Player playerChosen = findPlayer (game, chooseWho);
                 if(!playerChosen.equals(null)){
-                    bot.sendMessage("The king shall now choose " + (remainder-1) + " more players for the quest.", game.gameId);
-                    bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
+                    String chooseHowManyMorePplMsg = "The king shall now choose " + (remainder-1) + " more players for the quest.\nPlease choose players in the following format: /choose playerName.";
+                    bot.sendMessage(chooseHowManyMorePplMsg, game.gameId);
                 
                     if (game.pendingMissionPlayers.contains(playerChosen)) {
-                        bot.sendMessage("THIS GUY ALREADY IN THE TEAM LAH.", game.gameId);
+                        bot.sendMessage("This player has already been chosen.", game.gameId);
                     } else {
                         game.pendingMissionPlayers.add(playerChosen);
-                        bot.sendMessage(chooseWho + " has been added.", game.gameId);
+                        bot.sendMessage(chooseWho + " has been chosen!", game.gameId);
                         numChosen++;
                     }
                 } else {
@@ -94,10 +94,12 @@ public class State5 {
     }
     
     public static void printList(AvalonBot bot, Game game) {
+        StringBuilder allChosen = new StringBuilder();
         for (int i = 0; i < game.pendingMissionPlayers.size(); i++) {
-            bot.sendMessage(game.pendingMissionPlayers.get(i).name + "\n", game.gameId);
-
+            allChosen.append(game.pendingMissionPlayers.get(i).name + "\n");
         }
+        allChosen.append("It is time to vote if mission is a go.");
+        bot.sendMessage(allChosen.toString(), game.gameId);
     }
     
     public static Player findPlayer (Game game, String targetName) {
