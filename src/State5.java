@@ -99,7 +99,7 @@ public class State5 {
                     } else {
                         game.pendingMissionPlayers.remove(playerChosen);
                         bot.sendMessage(chooseWho + " has been removed.", game.gameId);
-                        numChosen++;
+                        numChosen--;
                     }
                 } else {
                     bot.sendMessage("Player not found", game.gameId);
