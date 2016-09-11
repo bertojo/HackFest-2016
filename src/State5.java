@@ -95,7 +95,7 @@ public class State5 {
                     bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
                 
                     if (!game.pendingMissionPlayers.contains(playerChosen)) {
-                        bot.sendMessage("THIS GUY IS NOT IN THE TEAM LAH.", game.gameId);
+                        bot.sendMessage("This player has already been chosen.", game.gameId);
                     } else {
                         game.pendingMissionPlayers.remove(playerChosen);
                         bot.sendMessage(chooseWho + " has been removed.", game.gameId);
