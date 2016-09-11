@@ -27,6 +27,8 @@ public class State9 {
         if (checkPlayer(game.pendingMissionPlayers, message.getChatId())) {
         	if (message.getText().contains("success")) {
         		bot.sendMessage("Choice Accepted : SUCCESS!", message.getChatId());
+        		game.successFailCount++;
+        		bot.sendMessage("Waiting for mission players (" + (game.successFailCount) + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
         	} else if (message.getText().contains("fail")) {
         		String role = checkRole(game.pendingMissionPlayers, message.getChatId());
         		if (role.equals(Roles.merlin) || role.equals(Roles.percival) || role.equals(Roles.goodling)) {
@@ -36,6 +38,8 @@ public class State9 {
 	        		bot.sendMessage("Choice Accepted : FAIL!", message.getChatId());
 	        		game.missionFailCount++;
         		}
+       		game.successFailCount++;
+        		bot.sendMessage("Waiting for mission players (" + (game.successFailCount) + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
         	}
         	game.pmMissionCount ++;
         } else {
@@ -52,6 +56,7 @@ public class State9 {
     			bot.sendMessage("Mission FAIL!\nNumber of fails: " + game.missionFailCount, game.gameId);
     			game.failureCount++;
     		}
+    		game.successFailCount = 0;
     		game.state++;
     		State10.checkGameStatus(bot, game);
         }
