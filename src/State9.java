@@ -28,7 +28,7 @@ public class State9 {
         	if (message.getText().contains("success")) {
         		bot.sendMessage("Choice Accepted : SUCCESS!", message.getChatId());
         		game.successFailCount++;
-        		bot.sendMessage("Waiting for mission players (" + (game.missionFailCount+1) + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
+        		bot.sendMessage("Waiting for mission players (" + (game.successFailCount+1) + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
         	} else if (message.getText().contains("fail")) {
         		String role = checkRole(game.pendingMissionPlayers, message.getChatId());
         		if (role.equals(Roles.merlin) || role.equals(Roles.percival) || role.equals(Roles.goodling)) {
@@ -39,7 +39,7 @@ public class State9 {
 	        		game.missionFailCount++;
         		}
         		game.successFailCount++;
-        		bot.sendMessage("Waiting for mission players (" + (game.missionFailCount+1) + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
+        		bot.sendMessage("Waiting for mission players (" + (game.successFailCount+1) + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
         	}
         	game.pmMissionCount ++;
         } else {
