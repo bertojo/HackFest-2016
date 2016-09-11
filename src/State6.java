@@ -30,14 +30,7 @@ public class State6 {
 			
 			System.out.println(game.approveRejectMap);
 			
-			if (validCommand) {
-				String approveOrReject = "";
-				if (game.approveRejectMap.get(currentPlayer) == 1) {
-					approveOrReject = "Approved";
-				} else if (game.approveRejectMap.get(currentPlayer) == 0) {
-					approveOrReject = "Rejected";
-				}
-				
+			if (validCommand) {				
 				StringBuffer list = new StringBuffer();
 				int numberOfVoters = 0;
 				for (Entry<Player, Integer> entry : game.approveRejectMap.entrySet()) {
