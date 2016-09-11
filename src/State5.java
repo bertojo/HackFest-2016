@@ -51,8 +51,7 @@ public class State5 {
         int numOfQuesters = game.map.missionPlayerCount[game.currentQuestNumber];
         int remainder = numOfQuesters - game.numChosen;
 
-        if (msg.getFrom().getFirstName().equals(king.name)) {
-            
+        if (msg.getFrom().getId() == (king.playerId)) {
             String msgUpdate = msg.getText();
             String prefix = msgUpdate.trim().substring(0, 7);
             String chooseWho = msgUpdate.trim().substring(8, msgUpdate.length()).trim();
