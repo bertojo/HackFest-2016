@@ -11,6 +11,8 @@ public class AvalonBot extends TelegramLongPollingBot {
     public String token = "209510292:AAGF3xpH2h5z7FmXJO1OdsFv_QjL-sx6ITA";
     public String botName = "AvalonBotBot";
     public TreeMap<Long, Game> games = new TreeMap<Long, Game>();
+    public String helpMessage = "Welcome to Avalon Bot!\nTo create a new game, type /creategame\nTo join an existing game, type /join\nTo start the game, type /startgame\nFor more information on roles, type /roles\n";
+    public String roleMessage = "Roles:\nMerlin - Knows who the villians are, but must remain hidden\nPercival - Knows either Merlin or Morgana, must protect Merlin\nMorgana - Pretends to be Merlin\nAssassin - Must try to figure out and assassinate Merlin\nMordred - Hidden from Merlin\nLoyal Servant of Arther - Forces of Good\nMinion of Mordred - Forces of Evil";
 
     @Override
     public String getBotUsername() {
@@ -20,6 +22,7 @@ public class AvalonBot extends TelegramLongPollingBot {
     @Override
     public void onUpdateReceived(Update update) {
         // check if the update has a message
+         
         if (update.hasMessage()) {
         	System.out.println(update.getMessage());
             Message message = update.getMessage();
@@ -34,6 +37,11 @@ public class AvalonBot extends TelegramLongPollingBot {
             		isId = true;
             	} catch (Exception e) {
             		isId = false;
+            	}
+            	if(message.getText().equals("/help")){
+            	    this.sendMessage(helpMessage, message.getId());
+            	} else if(message.getText().equals("/roles")){
+            	    this.sendMessage(roleMessage, message.getId());
             	}
             	//If a user pm the bot for their role, tell them individually and save that chatId to the user
             	if (!games.containsKey(chatId) && isId) { //is a pm
