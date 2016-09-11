@@ -88,7 +88,7 @@ public class State5 {
                 }
             } else if (prefix.equals("/remove")) {
             	if(!playerChosen.equals(null)){
-                    bot.sendMessage("The king shall now choose " + (remainder-1) + " more players for the quest.", game.gameId);
+                    bot.sendMessage("The king shall now choose " + (remainder+1) + " more players for the quest.", game.gameId);
                     bot.sendMessage("Please choose players in the following format: /choose playerName.", game.gameId);
                 
                     if (!game.pendingMissionPlayers.contains(playerChosen)) {
