@@ -15,6 +15,7 @@ public class Game {
 	public int missionFailCount;
 	public boolean isFirstKing = true;
 	public int numChosen = 0;
+	public int successFailCount;
 	
 	//King stuff
 	public Player king;

@@ -23,6 +23,7 @@ public class State7 {
             bot.sendMessage(sb.toString(), game.gameId);
             game.voteTrack = 0;
             game.state++;
+            game.successFailCount = 0;
             State8.run(game, bot);
         } else {
             sb.append("\n\n").append("Rejected");
