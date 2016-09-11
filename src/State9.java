@@ -28,18 +28,18 @@ public class State9 {
         	if (message.getText().contains("success")) {
         		bot.sendMessage("Choice Accepted : SUCCESS!", message.getChatId());
         		game.successFailCount++;
-        		bot.sendMessage("Waiting for mission players (" + game.missionFailCount + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
+        		bot.sendMessage("Waiting for mission players (" + (game.missionFailCount+1) + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
         	} else if (message.getText().contains("fail")) {
         		String role = checkRole(game.pendingMissionPlayers, message.getChatId());
         		if (role.equals(Roles.merlin) || role.equals(Roles.percival) || role.equals(Roles.goodling)) {
-        			bot.sendMessage("You cheebye. You are a good man. You don't put fail", message.getChatId());
+        			bot.sendMessage("You are a good man. You don't put fail", message.getChatId());
         			bot.sendMessage("I have chosen SUCCESS for you. KTHXBYE", message.getChatId());
         		} else {
 	        		bot.sendMessage("Choice Accepted : FAIL!", message.getChatId());
 	        		game.missionFailCount++;
         		}
         		game.successFailCount++;
-        		bot.sendMessage("Waiting for mission players (" + game.missionFailCount + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
+        		bot.sendMessage("Waiting for mission players (" + (game.missionFailCount+1) + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
         	}
         	game.pmMissionCount ++;
         } else {

@@ -40,6 +40,8 @@ public class State7 {
             	State12.endGame(game, bot);
             } else {
             	game.state = 4;
+            	game.pendingMissionPlayers.clear();
+            	game.numChosen = 0;
             	State4.updateKing(bot, game);
             }
             
