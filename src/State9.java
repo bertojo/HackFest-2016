@@ -39,7 +39,7 @@ public class State9 {
         	}
         	game.pmMissionCount ++;
         } else {
-        	bot.sendMessage("You don't cheebye.", message.getChatId());
+        	//bot.sendMessage("You don't cheebye.", message.getChatId());
         	bot.sendMessage("Sorry, you are not supposed to submit your choice to me!", message.getChatId());
         }
         
