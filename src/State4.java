@@ -15,7 +15,7 @@ public class State4 {
         }
         int numPlayersNeeded = game.map.missionPlayerCount[game.currentQuestNumber];
         String state4Msg = String.format("Current quest number is %d\nThe King is %s!\nThe King shall now choose %d players for the quest.\nPlease choose players in the following format: /choose playerName.",
-        		game.currentQuestNumber,
+        		game.currentQuestNumber+1,
         		game.king.name,
         		numPlayersNeeded);
         bot.sendMessage(state4Msg, game.gameId);
