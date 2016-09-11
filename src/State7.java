@@ -24,6 +24,7 @@ public class State7 {
             game.voteTrack = 0;
             game.state++;
             game.successFailCount = 0;
+    		bot.sendMessage("Waiting for mission players (" + (game.successFailCount) + "/" +game.pendingMissionPlayers.size() + ")", game.gameId);
             State8.run(game, bot);
         } else {
             sb.append("\n\n").append("Rejected");
