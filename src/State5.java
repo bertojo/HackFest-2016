@@ -56,7 +56,7 @@ public class State5 {
             String prefix = msgUpdate.trim().substring(0, 7);
             String chooseWho = msgUpdate.trim().substring(8, msgUpdate.length()).trim();
             Player playerChosen = findPlayer (game, chooseWho);
-            if (prefix.equals("/choose")) {
+            if (prefix.equalsIgnoreCase("/choose")) {
                 if(!playerChosen.equals(null)){
                     String chooseHowManyMorePplMsg = "The king shall now choose " + (remainder-1) + " more players for the quest.\nPlease choose players in the following format: /choose playerName.";
                     StringBuilder toSend = new StringBuilder(chooseHowManyMorePplMsg);

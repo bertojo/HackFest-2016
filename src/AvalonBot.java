@@ -38,9 +38,9 @@ public class AvalonBot extends TelegramLongPollingBot {
             	} catch (Exception e) {
             		isId = false;
             	}
-            	if(message.getText().equals("/help")){
+            	if(message.getText().equals("/help") || message.getText().equals("/help@AvalonBotBot")){
             	    this.sendMessage(helpMessage, message.getChatId());
-            	} else if(message.getText().equals("/roles")){
+            	} else if(message.getText().equals("/roles") || message.getText().equals("/roles@AvalonBotBot")){
             	    this.sendMessage(roleMessage, message.getChatId());
             	}
             	//If a user pm the bot for their role, tell them individually and save that chatId to the user
@@ -53,7 +53,7 @@ public class AvalonBot extends TelegramLongPollingBot {
             		if (currentGame.state == 9) {
             		    State9.run(message, this, currentGame, currentGame.map);
             		}
-            	} else if (message.getText().equals("/creategame") && !games.containsKey(chatId)) {
+            	} else if ((message.getText().equals("/creategame") || message.getText().equals("/creategame@AvalonBotBot")) && !games.containsKey(chatId)) {
             		//Create a new game
             		Game game = new Game(chatId);
             		games.put(chatId, game);
