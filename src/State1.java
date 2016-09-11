@@ -13,12 +13,12 @@ public class State1 {
 				String adminMsg = "Added " + newPlayer.name + "! (" + game.players.size() + " players)";
 				bot.sendMessage(adminMsg, message.getChatId());
 			}
-		} else if (message.getText().equals("/quit")) {
+		} else if (message.getText().equals("/quit") || message.getText().equals("/quit@AvalonBotBot")) {
 			Player quitter = new Player(message.getFrom().getId(), message.getFrom().getFirstName());
 			if (game.players.remove(quitter)) {
 				bot.sendMessage(quitter.name + " has left the game", message.getChatId());
 			}
-		} else if (message.getText().equals("/startgame")) {
+		} else if (message.getText().equals("/startgame") || message.getText().equals("/startgame@AvalonBotBot")) {
 			if (game.players.size() < 5) {
 				bot.sendMessage("Too little players! Please wait for more players to join! " + game.players.toString(), message.getChatId());
 			} else if (game.players.size() > 11) {
