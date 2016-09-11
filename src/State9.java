@@ -57,6 +57,7 @@ public class State9 {
     			game.failureCount++;
     		}
     		game.successFailCount = 0;
+    		game.missionFailCount = 0;
     		game.state++;
     		State10.checkGameStatus(bot, game);
         }
