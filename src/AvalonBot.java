@@ -39,9 +39,9 @@ public class AvalonBot extends TelegramLongPollingBot {
             		isId = false;
             	}
             	if(message.getText().equals("/help")){
-            	    this.sendMessage(helpMessage, message.getId());
+            	    this.sendMessage(helpMessage, message.getChatId());
             	} else if(message.getText().equals("/roles")){
-            	    this.sendMessage(roleMessage, message.getId());
+            	    this.sendMessage(roleMessage, message.getChatId());
             	}
             	//If a user pm the bot for their role, tell them individually and save that chatId to the user
             	if (!games.containsKey(chatId) && isId) { //is a pm
