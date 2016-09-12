@@ -38,13 +38,18 @@ public class AvalonBot extends TelegramLongPollingBot {
             	} catch (Exception e) {
             		isId = false;
             	}
-            	if(message.getText().equals("/help") || message.getText().equals("/help@AvalonBotBot")){
+            	if(message.getText().equals("/closegame") || message.getText().equals("/closegame@AvalonBotBot")){
+            	    if (games.containsKey(chatId)) {
+            	    	games.remove(chatId);
+            	    	sendMessage("Game has been closed. Type /creategame to start a new game!", chatId);
+            	    } else {
+            	    	sendMessage("No game found. Type /creategame to start a new game!", chatId);
+            	    }
+            	} else if(message.getText().equals("/help") || message.getText().equals("/help@AvalonBotBot")){
             	    this.sendMessage(helpMessage, message.getChatId());
             	} else if(message.getText().equals("/roles") || message.getText().equals("/roles@AvalonBotBot")){
             	    this.sendMessage(roleMessage, message.getChatId());
-            	}
-            	//If a user pm the bot for their role, tell them individually and save that chatId to the user
-            	if (!games.containsKey(chatId) && isId) { //is a pm
+            	} else if (!games.containsKey(chatId) && isId) { //If a user pm the bot for their role, tell them individually and save that chatId to the user
             		State2.run(this, message, games);
             	} else if (message.getText().contains("_success") || message.getText().contains("_fail")) { //is a pm
             		long id = Long.parseLong(message.getText().replace("/", "").replace("_success", "").replace("_fail", "")) * -1;
